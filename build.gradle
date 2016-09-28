@@ -1,8 +1,36 @@
 apply plugin: 'java'
 apply plugin: 'application'
 
-mainClassName = "Sequence.java"
+mainClassName = "Sequence"
+
+repositories {
+    mavenCentral()
+}
 
 dependencies {
-  testCompile 'junit:junit:4.12'
+    testCompile 'junit:junit:4.12'
+}
+
+run {
+    try {
+        systemProperties System.getProperties()
+
+        args System.getProperty("args").split()
+    } catch (Exception ex) {
+        // do nothing
+    }
+}
+
+task demo << {
+    println "Integer Sequence Demo"
+    println "Tri(1) = 1"
+    println "Tri(2) = 3"
+    println "Tri(3) = 6"
+    println "Tri(4) = 10"
+    println "Tri(5) = 15"
+    println "Lazy(1) = 1"
+    println "Lazy(2) = 2"
+    println "Lazy(3) = 4"
+    println "Lazy(4) = 7"
+    println "Lazy(5) = 11"
 }
